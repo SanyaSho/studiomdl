@@ -37,10 +37,11 @@ CC=gcc
 ARCH?=-m32
 USER_FLAGS=
 CFLAGS=-Wint-to-pointer-cast $(USER_FLAGS)
+LDFLAGS=
 
 # Link math library on Linux
 ifeq ($(OS),Linux)
-	CFLAGS+=-lm
+	LDFLAGS+=-lm
 endif
 
 ifeq ($(ARCH),-m32)
@@ -49,6 +50,9 @@ ifeq ($(ARCH),-m32)
 else ifeq ($(ARCH),-m64)
 	CHECKPLATFORM?=unix64
 	ARCHPATH?=x86_64
+else ifeq ($(ARCH),-mbe32)
+	CHECKPLATFORM?=unix32
+	ARCHPATH?=arm
 endif
 
 CPPCHECK?=cppcheck
@@ -94,13 +98,14 @@ studiomdl.log: $(COMMON_SOURCES) $(addprefix studiomdl$(PATHSEP), $(STUDIOMDL_SO
 	$(CPPCHECK) $(COMMON_DEFINES) $(STUDIOMDL_DEFINES) $(CPPCHECKFLAGS) studiomdl 2>$@
 
 $(BIN_DIR)/studiomdl$(EXE): $(STUDIOMDL_OBJECTS)
-	$(CC) $(OPTS) $(STUDIOMDL_OBJECTS) $(STUDIOMDL_COMMON_OBJECTS) -o $@
+	$(CC) $(OPTS) $(STUDIOMDL_OBJECTS) $(STUDIOMDL_COMMON_OBJECTS) -o $@ $(LDFLAGS)
 
 $(BUILD_DIR)/%.o : src/%.c
-	$(CC) -c $(OPTS) $(COMMON_DEFINES) $(STUDIOMDL_DEFINES) $(INCLUDE_DIRS) $< -o $@
+	$(CC) -c $(OPTS) $(COMMON_DEFINES) $(STUDIOMDL_DEFINES) $(INCLUDE_DIRS) $< -o $@ $(LDFLAGS)
 
 clean:
 	-$(RMR) $(foreach target,$(TARGETS),$(BUILD_DIR)$(PATHSEP)$(target) )
+	-$(RMR) build
 
 distclean: clean
 	-$(RMR) $(foreach target,$(TARGETS),$(BIN_DIR)$(PATHSEP)$(target)$(EXE))

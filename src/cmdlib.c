@@ -4,6 +4,8 @@
 
 #ifdef WIN32
 #include <direct.h>
+#else
+#include <unistd.h>
 #endif
 
 #ifdef NeXT
@@ -233,7 +235,7 @@ void Q_getwd (char *out)
    _getcwd (out, 256);
    strcat (out, "\\");
 #else
-   getwd (out);
+   getcwd (out, 256);
 #endif
 }
 
