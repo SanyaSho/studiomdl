@@ -81,5 +81,5 @@ See the [guidelines for contributing][].
 [QC]: https://developer.valvesoftware.com/wiki/QC
 [MDL]: https://developer.valvesoftware.com/wiki/Model
 [studiomdl_wiki]: https://developer.valvesoftware.com/wiki/Studiomdl
-[guidelines for contributing]: https://github.com/fnky/studiomdl/blob/master/CONTRIBUTING.md
-[studiomdl_banner]: https://raw.githubusercontent.com/fnky/studiomdl/master/img/banner.png
+[guidelines for contributing]: https://github.com/SanyaSho/studiomdl/blob/master/CONTRIBUTING.md
+[studiomdl_banner]: https://raw.githubusercontent.com/SanyaSho/studiomdl/master/img/banner.png
