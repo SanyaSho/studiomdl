@@ -17,6 +17,7 @@
 #include "studiomdl.h"
 #include "monsters/activity.h"
 #include "monsters/activitymap.h"
+#include "bmpread.h"
 
 #define min(a,b) fmin(a,b)
 #define max(a,b) fmax(a,b)

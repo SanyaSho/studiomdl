@@ -35,8 +35,7 @@ endif
 CC=gcc
 
 ARCH?=-m32
-USER_FLAGS=
-CFLAGS=-Wint-to-pointer-cast $(USER_FLAGS)
+CFLAGS=-Wint-to-pointer-cast -no-pie -O1
 LDFLAGS=
 
 # Link math library on Linux
